@@ -42,7 +42,7 @@ async function start() {
       console.log('Server has been started...')
     })
   } catch (e) {
-    console.log(e.message)
+    console.log("mongo connect error" , URI)
   }
 }
 
