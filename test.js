@@ -1,8 +1,8 @@
-const axios = require('axios')
-//test login
-axios.post('http://localhost:3000/login',{password:'55255525',email:'turaaa@gmail.com'}).then(d=>{
-    console.log(d);
-})
+// const axios = require('axios')
+// //test login
+// axios.post('http://localhost:3000/login',{password:'55255525',email:'turaaa@gmail.com'}).then(d=>{
+//     console.log(d);
+// })
 
 // test login with dont't have email
 // axios.post('http://localhost:9000/login',{password:'55255525',email:'turaaa@gmail.com'}).then(d=>{
@@ -19,3 +19,7 @@ axios.post('http://localhost:3000/login',{password:'55255525',email:'turaaa@gmai
 // })
 // exp: Math.floor(Date.now() / 1000) + (60 * 60),
 // console.log(Math.floor(Date.now() / 1000) + (60 * 60 * 24 * 30));
+const app = require('express')()
+app.get('/',(req,res)=>{
+    res.send('hello')
+})
