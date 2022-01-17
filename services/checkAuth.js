@@ -10,7 +10,7 @@ async function authonticateToken(req,res,next){
         const refresh = req.cookies.REFRESH_TOKEN 
         const user =refresh && await Users.findOne({refreshToken:refresh})
         if(!user) return res.sendStatpireus(403)
-        const accessToken = jwt.sign({password:user.password,email:user.email},ACCESS_TOKEN,{exsIn: accesTokenTime + 's'})
+        const accessToken = jwt.sign({password:user.password,email:user.email},ACCESS_TOKEN,{expiresIn: accesTokenTime + 's'})
         req.accessToken = accessToken
         next()
     }
