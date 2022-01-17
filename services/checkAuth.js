@@ -12,7 +12,7 @@ async function authonticateToken(req,res,next){
         console.log(user);
         if(!user) return res.sendStatus(403)
         const accessToken = jwt.sign({password:user.password,email:user.email},ACCESS_TOKEN,{expiresIn: accesTokenTime + 's'})
-        res.json({accessToken})
+        req.accessToken = accessToken
         next()
     }
     jwt.verify(token,ACCESS_TOKEN,(err,user)=>{
