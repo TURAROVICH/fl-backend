@@ -13,9 +13,9 @@ const app = express()
 const authRoutes = require('./routes/auth')
 const usersRoutes = require('./routes/users')
  
-app.use(cors({credentials: true, origin: 'http://localhost:8080'}));
+app.use(cors({credentials: true, origin: '*'}));
 app.all('*', function(req, res, next) {
-  res.header("Access-Control-Allow-Origin", "http://localhost:8080");
+  res.header("Access-Control-Allow-Origin", "*");
   res.header("Access-Control-Allow-Credentials", true);
   res.header("Access-Control-Allow-Methods", "GET,HEAD,OPTIONS,POST,PUT");
   res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept, Authorization");
