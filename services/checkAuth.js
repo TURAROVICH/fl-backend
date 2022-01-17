@@ -6,10 +6,10 @@ async function authonticateToken(req,res,next){
     const authHeader = req.headers['authorization']
     const token =authHeader && authHeader.split(' ')[1]
     if(token == null){
-        console.log(req.cookies);
-        // const refresh = req.cookies['REFRESH_TOKEN']
-        // const user = await Users.findOne({refreshToken:refresh})
-        return res.sendStatus(403)
+        console.log(req.cookies.REFRESH_TOKEN);
+        const refresh = req.cookies.REFRESH_TOKEN 
+        const user =refresh && await Users.findOne({refreshToken:refresh})
+        if(!user) return res.sendStatus(403)
         const accessToken = jwt.sign({password:user.password,email:user.email},ACCES_TOKEN,{expiresIn: accesTokenTime + 's'})
         req.accessToken = accessToken
         next()
