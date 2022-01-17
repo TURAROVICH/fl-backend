@@ -20,7 +20,7 @@ router.post('/login', async (req, res) => {
   }
   const match = await compareHash(password,user.password)
   if(!match){
-    return res.status(403).json({message:'Не пралильный пароль'});
+    return res.status(403).json({message:'Не правильный пароль'});
   }
   const accessToken = jwt.sign({password,email},ACCES_TOKEN,{expiresIn: accesTokenTime + 's'})
   const refreshToken = jwt.sign({password:await hashPassword,email},REFRESH_TOKEN)
