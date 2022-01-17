@@ -7,8 +7,8 @@ async function authonticateToken(req,res,next){
     const token =authHeader && authHeader.split(' ')[1]
     if(token == null){
         const refresh = req.cookies.REFRESH_TOKEN 
-        const user =refresh && await Users.findOne({refreshToken:refresh})
-        if(!user) return res.sendStatus(403)
+        const user = await Users.findOne({refreshToken:refresh})
+        if(!await user) return res.sendStatus(403)
         const accessToken = jwt.sign({password:user.password,email:user.email},ACCESS_TOKEN,{expiresIn: accesTokenTime + 's'})
         req.accessToken = accessToken
         next()
