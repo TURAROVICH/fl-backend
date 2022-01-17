@@ -32,7 +32,7 @@ app.use(usersRoutes)
 async function start() {
   try {
     await mongoose.connect(
-      `mongodb+srv://${process.env.DB_ROLE}:${process.env.DB_PASSWORD}@${process.env.DB_LINK}`,
+      `mongodb+srv://admin:55255525@cluster0.njtbp.mongodb.net/myFirstDatabase?retryWrites=true&w=majority`,
       {
         useNewUrlParser: true,
         useFindAndModify: false
