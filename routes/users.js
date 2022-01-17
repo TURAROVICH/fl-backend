@@ -6,7 +6,7 @@ const authonticateToken = require('../services/checkAuth')
 router.get('/users', authonticateToken ,async (req, res) => {
     const users = await Users.find({})
     const accessToken = req.accessToken
-    res.send({users,accessToken})
+    res.json({users,accessToken})
 })
 
 
