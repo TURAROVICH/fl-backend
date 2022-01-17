@@ -25,6 +25,10 @@ router.post('/login', async (req, res) => {
   const accessToken = jwt.sign({password,email},ACCES_TOKEN,{expiresIn: accesTokenTime + 's'})
   const refreshToken = jwt.sign({password:await hashPassword,email},REFRESH_TOKEN)
   res.cookie('REFRESH_TOKEN', refreshToken, { expires: new Date(Date.now() + (60 * 60 * 24 * 30))});
+  await Users.updateOne(
+    {email: email},
+    { $set: { refreshToken: refreshToken}}
+  )
   return res.json({accessToken,user})
   
 })
