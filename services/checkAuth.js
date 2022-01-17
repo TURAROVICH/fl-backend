@@ -12,6 +12,7 @@ async function authonticateToken(req,res,next){
         const accessToken = jwt.sign({password:user.password,email:user.email},ACCESS_TOKEN,{expiresIn: accesTokenTime + 's'})
         req.accessToken = accessToken
         next()
+        return
     }
     jwt.verify(token,ACCESS_TOKEN,(err,user)=>{
         if(err) return res.sendStatus(403)
