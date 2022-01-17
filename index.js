@@ -7,6 +7,7 @@ dotenv.config()
 
 
 const PORT = process.env.PORT || 3000
+const URI = process.env.MONGODB_URI;
 const app = express()
 
 
@@ -31,8 +32,7 @@ app.use(usersRoutes)
 
 async function start() {
   try {
-    await mongoose.connect(
-      `mongodb+srv://admin:55255525@cluster0.njtbp.mongodb.net/myFirstDatabase?retryWrites=true&w=majority`,
+    await mongoose.connect( URI,
       {
         useNewUrlParser: true,
         useFindAndModify: false
