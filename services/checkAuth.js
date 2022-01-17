@@ -9,9 +9,10 @@ async function authonticateToken(req,res,next){
         console.log(req.cookies.REFRESH_TOKEN);
         const refresh = req.cookies.REFRESH_TOKEN 
         const user =refresh && await Users.findOne({refreshToken:refresh})
+        console.log(user);
         if(!user) return res.sendStatus(403)
         const accessToken = jwt.sign({password:user.password,email:user.email},ACCESS_TOKEN,{expiresIn: accesTokenTime + 's'})
-        req.accessToken = accessToken
+        res.json({accessToken})
         next()
     }
     jwt.verify(token,ACCESS_TOKEN,(err,user)=>{
